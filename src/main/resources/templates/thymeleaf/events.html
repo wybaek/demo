@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Thymeleaf Sandbox</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+<p>Listing being sent as SSE (Server-Sent Events)</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Row Index</th>
+        <th>Playlist ID</th>
+        <th>Playlist Name</th>
+        <th>Track Name</th>
+        <th>Artist Name</th>
+        <th>Album Title</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="e : ${entries}">
+        <td th:text="${eStat.index}">...</td>
+        <td th:text="${e.id}">...</td>
+        <td th:text="${e.title}">...</td>
+        <td th:text="${e.content}">...</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+
+</html>

@@ -25,9 +25,14 @@ repositories {
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-webflux')
+	// Excluded because we will be using netty
+	compile('org.springframework.boot:spring-boot-starter-webflux') {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+	}
+	compile('io.projectreactor.ipc:reactor-netty')
 	compile('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
 	compile("org.springframework.boot:spring-boot-devtools")
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-freemarker') {
 		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-web'
 	}
