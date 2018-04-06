@@ -38,7 +38,7 @@ public class ThymeleafController {
         return "thymeleaf/index-sse";
     }
 
-    @RequestMapping("/events")
+    @RequestMapping(value="/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public String events(final Model model) {
 
         final Flux<Post> postlistStream = this.posts.findAll();

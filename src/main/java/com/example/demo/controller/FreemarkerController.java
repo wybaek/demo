@@ -5,6 +5,7 @@ import com.example.demo.repository.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.Duration;
 
@@ -29,4 +30,16 @@ public class FreemarkerController {
         return "hello";
     }
 
+    @RequestMapping("/freemarker")
+    public String index() {
+        return "index";
+    }
+
+
+    @RequestMapping("/smalllist.freemarker")
+    public String smallList(final Model model) {
+
+        model.addAttribute("entries", this.posts.findAll());
+        return "smalllist";
+    }
 }
