@@ -1,11 +1,15 @@
 package com.example.demo;
 
+import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.ui.freemarker.SpringTemplateLoader;
 import org.springframework.web.reactive.result.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.reactive.result.view.freemarker.FreeMarkerViewResolver;
+import org.thymeleaf.spring5.ISpringWebFluxTemplateEngine;
+import org.thymeleaf.spring5.view.reactive.ThymeleafReactiveViewResolver;
 
 @Configuration
 public class FluxWebConfig {
@@ -36,4 +40,14 @@ public class FluxWebConfig {
         // TODO * Apparently no way to specify which views can be handled by this ViewResolver (viewNames property)
         return freeMarkerViewResolver;
     }
+
+    @Bean
+    public ThymeleafReactiveViewResolver thymeleafChunkedAndDataDrivenViewResolver() {
+        final ThymeleafReactiveViewResolver viewResolver = new ThymeleafReactiveViewResolver();
+//        viewResolver.setTemplateEngine(templateEngine);
+        viewResolver.setOrder(1);
+        viewResolver.setResponseMaxChunkSizeBytes(8192); // OUTPUT BUFFER size limit
+        return viewResolver;
+    }
+
 }

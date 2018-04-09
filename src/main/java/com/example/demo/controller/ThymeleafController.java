@@ -11,6 +11,8 @@ import org.thymeleaf.spring5.context.webflux.IReactiveDataDriverContextVariable;
 import org.thymeleaf.spring5.context.webflux.ReactiveDataDriverContextVariable;
 import reactor.core.publisher.Flux;
 
+import java.util.List;
+
 
 @Controller
 public class ThymeleafController {
@@ -51,5 +53,15 @@ public class ThymeleafController {
         return "thymeleaf/events";
     }
 
+    @RequestMapping("/events/chunked")
+    public String eventsChunked(final Model model) {
+
+        final Flux<Post> postlistStream = this.posts.findAll();
+        final List<Post> postlistEntries = postlistStream.collectList().block();
+
+        model.addAttribute("entries", postlistEntries);
+
+        return "thymeleaf/eventsChunked";
+    }
 
 }

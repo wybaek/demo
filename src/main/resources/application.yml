@@ -10,6 +10,7 @@ spring:
       grid-fs-database: images
 # https://github.com/thymeleaf/thymeleafsandbox-biglist-reactive/blob/8931a34fade5920942bb44bc45265f979545f6a8/src/main/resources/application.properties
   thymeleaf:
+    mode: html
     template-resolver-order: 1
     check-template: false
     reactive:
