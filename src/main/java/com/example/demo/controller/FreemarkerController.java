@@ -20,7 +20,7 @@ public class FreemarkerController {
 
     @GetMapping(path="/home")
     public String home(Model model) {
-        model.addAttribute("posts", this.posts.findAll().collectList().block(Duration.ofSeconds(1)));
+        model.addAttribute("posts", this.posts.findAll());
         return "home";
     }
 
